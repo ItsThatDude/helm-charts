@@ -3,6 +3,16 @@ entries:
   route-admission-controller:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-08-07T08:44:11.192850788Z"
+    description: A helm chart to deploy the Route Admission Controller
+    digest: 87605af9d0896370a45591a8cc673eb6840df0aca527cfc0931d935314108637
+    name: route-admission-controller
+    type: application
+    urls:
+    - route-admission-controller-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-08-07T08:41:12.772660322Z"
     description: A helm chart to deploy the Route Admission Controller
     digest: cb9d767b7397ca55ab726794fd9df9f407fe5d9370cfb124bb072d0d6abd70c2
@@ -21,4 +31,4 @@ entries:
     urls:
     - route-admission-controller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-07T08:41:12.772673277Z"
+generated: "2025-08-07T08:44:11.192863041Z"
