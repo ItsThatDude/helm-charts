@@ -3,14 +3,27 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name: route-validator-webhook
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.webhook.annotations }}
+  annotations:
+    {{- toYaml .Values.webhook.annotations | nindent 4 }}
+  {{- end }}
 webhooks:
   - name: {{ .Values.webhook.name }}
     rules:
+    {{- if .Values.validator.validateIngress }}
+      - apiGroups: ["networking.k8s.io"]
+        apiVersions: ["v1"]
+        operations: ["CREATE", "UPDATE"]
+        resources: ["ingresses"]
+        scope: "Namespaced"
+    {{- end }}
+    {{- if .Values.validator.validateRoutes }}
       - apiGroups: ["route.openshift.io"]
         apiVersions: ["v1"]
         operations: ["CREATE", "UPDATE"]
         resources: ["routes"]
         scope: "Namespaced"
+    {{- end }}
     clientConfig:
       service:
         name: {{ .Values.service.name }}

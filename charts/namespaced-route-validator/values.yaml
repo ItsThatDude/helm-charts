@@ -1,3 +1,21 @@
+validator:
+  # -- Validate Ingress objects
+  validateIngress: true
+
+  # -- Validate OpenShift/OKD Route objects
+  validateRoutes: true
+
+  # -- This specifies the namespace selector the admission controller applies to
+  namespaceSelector:
+    matchLabels:
+      enforce-route-check: "true"
+  #  matchExpressions: []
+  #   - key: tenant
+  #     operator: Exists
+
+  # -- This specifies which base domains the admission controller applies to
+  matchDomains: []
+
 # Deployment Configuration
 deployment:
   # -- Specify the replica count for the deployment
@@ -7,31 +25,63 @@ deployment:
   image:
     # -- Specify the repo/image name to pull the image from
     repository: namespaced-route-validator
+
     # -- Specify the image tag to pull, if blank will pull the version from the chart's AppVersion
     tag:
+
     # -- Specify the image pull policy
     pullPolicy: IfNotPresent
   
+  # -- Specify the log level of the controller
   logLevel: info
+  
+  # -- Override the settings for the default liveness probe
+  # @default -- N/A
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 3
+    successThreshold: 1
 
-# -- This specifies the namespace selector the admission controller applies to
-# @default -- N/A
-namespaceSelector:
-  matchLabels:
-    enforce-route-check: "true"
-# matchExpressions:
-#   - key: tenant
-#     operator: Exists
+  # -- Override the settings for the default readiness probe
+  # @default -- N/A
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 3
+    successThreshold: 1
 
-# -- This specifies which base domains the admission controller applies to
-matchDomains: []
+  # -- Override the settings for the default startup probe
+  # @default -- N/A
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 3
+    successThreshold: 1
+  
+  # -- Specify a custom liveness probe
+  customLivenessProbe: {}
+
+  # -- Specify a custom readiness probe
+  customReadinessProbe: {}
+
+  # -- Specify a custom startup probe
+  customStartupProbe: {}
 
 # Service Configuration
 service:
   # -- Specify the name of the service
   name: namespaced-route-validator-service
+
   # -- Specify the port of the service
   port: 443
+
   # -- Specify any additional annotations to add to the service
   annotations: {}
 
@@ -56,3 +106,6 @@ webhook:
 
   # -- Specify the CA Bundle that signs the controller's certificate
   caBundle: ""
+
+  # -- Specify any additional annotations to add to the webhook
+  annotations: {}
