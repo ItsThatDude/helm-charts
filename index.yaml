@@ -3,6 +3,16 @@ entries:
   namespaced-route-validator:
   - apiVersion: v2
     appVersion: 0.1.4
+    created: "2025-09-04T22:03:37.549558115Z"
+    description: A helm chart to deploy the Namespaced Route Validator
+    digest: 3c8008a595bc0f9458509cf8ae1e77843417a21da70e315a6c7487541baf9a64
+    name: namespaced-route-validator
+    type: application
+    urls:
+    - namespaced-route-validator-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
+    appVersion: 0.1.4
     created: "2025-09-04T21:01:53.022188075Z"
     description: A helm chart to deploy the Namespaced Route Validator
     digest: a3a93dfb6131a65daf04d6492ecfe776fd26208bc62c36c3c6eed5226fa95b5a
@@ -71,4 +81,4 @@ entries:
     urls:
     - namespaced-route-validator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-04T21:01:53.022222199Z"
+generated: "2025-09-04T22:03:37.549575949Z"
