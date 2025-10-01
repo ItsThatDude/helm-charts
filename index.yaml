@@ -3,6 +3,22 @@ entries:
   jitaccess:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-10-01T05:14:49.125757295Z"
+    description: Helm chart for the jitaccess controller
+    digest: 21759d16a31b0960fbbd98c15fc673a58d37270e76d6a8660a137a21e2b5664f
+    home: https://https://github.com/ItsThatDude/jit-access-controller
+    keywords:
+    - just-in-time
+    - jit
+    name: jitaccess
+    sources:
+    - https://https://github.com/ItsThatDude/jit-access-controller
+    type: application
+    urls:
+    - jitaccess-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-09-30T05:28:31.947159195Z"
     description: Helm chart for the jitaccess controller
     digest: ffb6cf0778ab98e973ec83aa8c436ec3c10147592bb7b0fe81c0664c0a406928
@@ -118,4 +134,4 @@ entries:
     urls:
     - namespaced-route-validator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-30T05:28:31.947188028Z"
+generated: "2025-10-01T05:14:49.125791479Z"
