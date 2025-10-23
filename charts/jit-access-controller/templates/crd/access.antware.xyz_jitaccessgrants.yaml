@@ -59,9 +59,8 @@ spec:
                 items:
                   type: string
                 type: array
-              durationSeconds:
-                format: int64
-                type: integer
+              duration:
+                type: string
               namespace:
                 type: string
               permissions:
@@ -118,14 +117,26 @@ spec:
               requestId:
                 type: string
               role:
-                type: string
+                description: RoleRef contains information that points to the role
+                  being used
+                properties:
+                  apiGroup:
+                    description: APIGroup is the group for the resource being referenced
+                    type: string
+                  kind:
+                    description: Kind is the type of resource being referenced
+                    type: string
+                  name:
+                    description: Name is the name of resource being referenced
+                    type: string
+                required:
+                - apiGroup
+                - kind
+                - name
+                type: object
+                x-kubernetes-map-type: atomic
               roleBindingCreated:
                 type: boolean
-              roleKind:
-                enum:
-                - Role
-                - ClusterRole
-                type: string
               scope:
                 enum:
                 - Cluster
@@ -135,7 +146,7 @@ spec:
                 type: string
             required:
             - approvedBy
-            - durationSeconds
+            - duration
             - request
             - requestId
             - subject
