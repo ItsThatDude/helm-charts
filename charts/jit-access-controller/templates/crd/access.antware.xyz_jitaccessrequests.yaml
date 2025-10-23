@@ -45,12 +45,13 @@ spec:
           spec:
             description: spec defines the desired state of JITAccessRequest
             properties:
-              durationSeconds:
-                description: DurationSeconds defines how long the access should last
-                format: int64
-                type: integer
+              duration:
+                description: Duration specifies how long the access should last (e.g.
+                  "5s", "10m", "2h45m").
+                pattern: ^(\d+(ns|us|µs|ms|s|m|h))+$
+                type: string
                 x-kubernetes-validations:
-                - message: DurationSeconds cannot be changed after creation
+                - message: Duration cannot be changed after creation
                   rule: self == oldSelf
               justification:
                 description: User's justification for the request
@@ -114,18 +115,24 @@ spec:
                   rule: self == oldSelf
               role:
                 description: Role is an optional pre-defined Role/ClusterRole to bind
-                type: string
+                properties:
+                  apiGroup:
+                    description: APIGroup is the group for the resource being referenced
+                    type: string
+                  kind:
+                    description: Kind is the type of resource being referenced
+                    type: string
+                  name:
+                    description: Name is the name of resource being referenced
+                    type: string
+                required:
+                - apiGroup
+                - kind
+                - name
+                type: object
+                x-kubernetes-map-type: atomic
                 x-kubernetes-validations:
                 - message: Role cannot be changed after creation
-                  rule: self == oldSelf
-              roleKind:
-                description: Type of Role - Role or ClusterRole
-                enum:
-                - Role
-                - ClusterRole
-                type: string
-                x-kubernetes-validations:
-                - message: RoleKind cannot be changed after creation
                   rule: self == oldSelf
               subject:
                 description: Subject is the username or identity requesting access
@@ -134,7 +141,7 @@ spec:
                 - message: Subject cannot be changed after creation
                   rule: self == oldSelf
             required:
-            - durationSeconds
+            - duration
             - justification
             - subject
             type: object
