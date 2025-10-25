@@ -10,21 +10,20 @@ metadata:
     "helm.sh/resource-policy": keep
     {{- end }}
     controller-gen.kubebuilder.io/version: v0.18.0
-  name: clusterjitaccesspolicies.access.antware.xyz
+  name: accesspolicies.access.antware.xyz
 spec:
   group: access.antware.xyz
   names:
-    kind: ClusterJITAccessPolicy
-    listKind: ClusterJITAccessPolicyList
-    plural: clusterjitaccesspolicies
-    singular: clusterjitaccesspolicy
-  scope: Cluster
+    kind: AccessPolicy
+    listKind: AccessPolicyList
+    plural: accesspolicies
+    singular: accesspolicy
+  scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ClusterJITAccessPolicy is the Schema for the clusterjitaccesspolicies
-          API
+        description: AccessPolicy is the Schema for the accesspolicies API
         properties:
           apiVersion:
             description: |-
@@ -44,7 +43,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: spec defines the desired state of ClusterJITAccessPolicy
+            description: spec defines the desired state of AccessPolicy
             properties:
               allowedPermissions:
                 description: AllowedPermissions is a list of adhoc permissions the
@@ -152,7 +151,7 @@ spec:
             - subjects
             type: object
           status:
-            description: status defines the observed state of ClusterJITAccessPolicy
+            description: status defines the observed state of AccessPolicy
             type: object
         required:
         - spec

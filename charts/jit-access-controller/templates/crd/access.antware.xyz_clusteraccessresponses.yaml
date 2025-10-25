@@ -10,20 +10,21 @@ metadata:
     "helm.sh/resource-policy": keep
     {{- end }}
     controller-gen.kubebuilder.io/version: v0.18.0
-  name: jitaccessresponses.access.antware.xyz
+  name: clusteraccessresponses.access.antware.xyz
 spec:
   group: access.antware.xyz
   names:
-    kind: JITAccessResponse
-    listKind: JITAccessResponseList
-    plural: jitaccessresponses
-    singular: jitaccessresponse
-  scope: Namespaced
+    kind: ClusterAccessResponse
+    listKind: ClusterAccessResponseList
+    plural: clusteraccessresponses
+    singular: clusteraccessresponse
+  scope: Cluster
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: JITAccessResponse is the Schema for the jitaccessresponses API
+        description: ClusterAccessResponse is the Schema for the clusteraccessresponses
+          API
         properties:
           apiVersion:
             description: |-
@@ -43,7 +44,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: spec defines the desired state of JITAccessResponse
+            description: spec defines the desired state of ClusterAccessResponse
             properties:
               approver:
                 type: string
@@ -69,7 +70,7 @@ spec:
             - response
             type: object
           status:
-            description: status defines the observed state of JITAccessResponse
+            description: status defines the observed state of ClusterAccessResponse
             type: object
         required:
         - spec

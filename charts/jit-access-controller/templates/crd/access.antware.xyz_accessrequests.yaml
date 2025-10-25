@@ -10,20 +10,20 @@ metadata:
     "helm.sh/resource-policy": keep
     {{- end }}
     controller-gen.kubebuilder.io/version: v0.18.0
-  name: jitaccesspolicies.access.antware.xyz
+  name: accessrequests.access.antware.xyz
 spec:
   group: access.antware.xyz
   names:
-    kind: JITAccessPolicy
-    listKind: JITAccessPolicyList
-    plural: jitaccesspolicies
-    singular: jitaccesspolicy
+    kind: AccessRequest
+    listKind: AccessRequestList
+    plural: accessrequests
+    singular: accessrequest
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: JITAccessPolicy is the Schema for the jitaccesspolicies API
+        description: AccessRequest is the Schema for the accessrequests API
         properties:
           apiVersion:
             description: |-
@@ -43,11 +43,25 @@ spec:
           metadata:
             type: object
           spec:
-            description: spec defines the desired state of JITAccessPolicy
+            description: spec defines the desired state of AccessRequest
             properties:
-              allowedPermissions:
-                description: AllowedPermissions is a list of adhoc permissions the
-                  subject is allowed to request.
+              duration:
+                description: Duration specifies how long the access should last (e.g.
+                  "5s", "10m", "2h45m").
+                pattern: ^(\d+(ns|us|µs|ms|s|m|h))+$
+                type: string
+                x-kubernetes-validations:
+                - message: Duration cannot be changed after creation
+                  rule: self == oldSelf
+              justification:
+                description: User's justification for the request
+                type: string
+                x-kubernetes-validations:
+                - message: Justification cannot be changed after creation
+                  rule: self == oldSelf
+              permissions:
+                description: Permissions are adhoc RBAC rules to grant (instead of
+                  a pre-defined role)
                 items:
                   description: |-
                     PolicyRule holds information that describes a policy rule, but does not contain information
@@ -96,62 +110,62 @@ spec:
                   - verbs
                   type: object
                 type: array
-              allowedRoles:
-                description: AllowedRoles is a list of roles the subject is allowed
-                  to request.
-                items:
-                  description: RoleRef contains information that points to the role
-                    being used
-                  properties:
-                    apiGroup:
-                      description: APIGroup is the group for the resource being referenced
-                      type: string
-                    kind:
-                      description: Kind is the type of resource being referenced
-                      type: string
-                    name:
-                      description: Name is the name of resource being referenced
-                      type: string
-                  required:
-                  - apiGroup
-                  - kind
-                  - name
-                  type: object
-                  x-kubernetes-map-type: atomic
-                type: array
-              approverGroups:
-                description: Approver Groups
-                items:
-                  type: string
-                type: array
-              approvers:
-                description: Approvers
-                items:
-                  type: string
-                type: array
-              maxDuration:
-                description: Duration specifies the maximum amount of time the access
-                  can last (e.g. "5s", "10m", "2h45m").
-                pattern: ^(\d+(ns|us|µs|ms|s|m|h))+$
+                x-kubernetes-validations:
+                - message: Permissions cannot be changed after creation
+                  rule: self == oldSelf
+              role:
+                description: Role is an optional pre-defined Role/ClusterRole to bind
+                properties:
+                  apiGroup:
+                    description: APIGroup is the group for the resource being referenced
+                    type: string
+                  kind:
+                    description: Kind is the type of resource being referenced
+                    type: string
+                  name:
+                    description: Name is the name of resource being referenced
+                    type: string
+                required:
+                - apiGroup
+                - kind
+                - name
+                type: object
+                x-kubernetes-map-type: atomic
+                x-kubernetes-validations:
+                - message: Role cannot be changed after creation
+                  rule: self == oldSelf
+              subject:
+                description: Subject is the username or identity requesting access
                 type: string
-              requiredApprovals:
-                description: The minimum number of approvals required to grant the
-                  request
-                minimum: 1
-                type: integer
-              subjects:
-                description: Subject is the identity (email or K8s username) of the
-                  requester.
-                items:
-                  type: string
-                type: array
+                x-kubernetes-validations:
+                - message: Subject cannot be changed after creation
+                  rule: self == oldSelf
             required:
-            - maxDuration
-            - requiredApprovals
-            - subjects
+            - duration
+            - justification
+            - subject
             type: object
           status:
-            description: status defines the observed state of JITAccessPolicy
+            description: status defines the observed state of AccessRequest
+            properties:
+              approvalsReceived:
+                type: integer
+              approvalsRequired:
+                type: integer
+              grantCreated:
+                type: boolean
+              requestExpiresAt:
+                format: date-time
+                type: string
+              requestId:
+                type: string
+              state:
+                enum:
+                - Pending
+                - Approved
+                - Denied
+                - Expired
+                type: string
             type: object
         required:
         - spec

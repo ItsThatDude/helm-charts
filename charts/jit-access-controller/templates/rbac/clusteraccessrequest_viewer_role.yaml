@@ -11,12 +11,12 @@ kind: ClusterRole
 metadata:
   labels:
     {{- include "chart.labels" . | nindent 4 }}
-  name: clusterjitaccessresponse-viewer-role
+  name: clusteraccessrequest-viewer-role
 rules:
 - apiGroups:
   - access.antware.xyz
   resources:
-  - clusterjitaccessresponses
+  - clusteraccessrequests
   verbs:
   - get
   - list
@@ -24,7 +24,7 @@ rules:
 - apiGroups:
   - access.antware.xyz
   resources:
-  - clusterjitaccessresponses/status
+  - clusteraccessrequests/status
   verbs:
   - get
 {{- end -}}

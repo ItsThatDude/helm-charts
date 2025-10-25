@@ -11,12 +11,12 @@ kind: ClusterRole
 metadata:
   labels:
     {{- include "chart.labels" . | nindent 4 }}
-  name: jitaccesspolicy-editor-role
+  name: accessresponse-editor-role
 rules:
 - apiGroups:
   - access.antware.xyz
   resources:
-  - jitaccesspolicies
+  - accessresponses
   verbs:
   - create
   - delete
@@ -28,7 +28,7 @@ rules:
 - apiGroups:
   - access.antware.xyz
   resources:
-  - jitaccesspolicies/status
+  - accessresponses/status
   verbs:
   - get
 {{- end -}}
