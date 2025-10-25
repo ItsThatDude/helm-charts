@@ -11,18 +11,18 @@ kind: ClusterRole
 metadata:
   labels:
     {{- include "chart.labels" . | nindent 4 }}
-  name: jitaccessrequest-admin-role
+  name: accessresponse-admin-role
 rules:
 - apiGroups:
   - access.antware.xyz
   resources:
-  - jitaccessrequests
+  - accessresponses
   verbs:
   - '*'
 - apiGroups:
   - access.antware.xyz
   resources:
-  - jitaccessrequests/status
+  - accessresponses/status
   verbs:
   - get
 {{- end -}}
