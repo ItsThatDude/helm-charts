@@ -115,6 +115,24 @@ entries:
     version: 0.1.0
   kairos:
   - apiVersion: v2
+    appVersion: 0.1.1
+    created: "2025-11-05T09:26:21.4391857Z"
+    description: Helm chart for the kairos controller
+    digest: 62ef565f88720d9b4d834b843f54ab8b2c4b6318fe0a12a53ee483e803c9f4fe
+    home: https://https://github.com/ItsThatDude/kairos
+    keywords:
+    - just-in-time
+    - jit
+    - access
+    - rbac
+    name: kairos
+    sources:
+    - https://https://github.com/ItsThatDude/kairos
+    type: application
+    urls:
+    - kairos-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2025-10-28T07:59:14.707823822Z"
     description: Helm chart for the kairos controller
@@ -233,4 +251,4 @@ entries:
     urls:
     - namespaced-route-validator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-28T07:59:14.707866572Z"
+generated: "2025-11-05T09:26:21.439229402Z"
