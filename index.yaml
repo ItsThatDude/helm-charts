@@ -3,6 +3,24 @@ entries:
   jit-access:
   - apiVersion: v2
     appVersion: 0.1.6
+    created: "2026-02-22T02:42:44.058559157Z"
+    description: Helm chart for the jit-access controller
+    digest: 0c6a29b08576af5605353d46c3518cb272d369cbc3beb57b9041e7afb2b33261
+    home: https://github.com/ItsThatDude/jit-access-controller
+    keywords:
+    - just-in-time
+    - jit
+    - access
+    - rbac
+    name: jit-access
+    sources:
+    - https://github.com/ItsThatDude/jit-access-controller
+    type: application
+    urls:
+    - jit-access-0.4.1.tgz
+    version: 0.4.1
+  - apiVersion: v2
+    appVersion: 0.1.6
     created: "2026-02-22T02:25:15.891629525Z"
     description: Helm chart for the jit-access controller
     digest: ff22f06a999b5af3037aa438f4d8780db83fb1471ad7b42de7b6b0a333cc5acd
@@ -684,4 +702,4 @@ entries:
     urls:
     - namespaced-route-validator-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-22T02:25:15.891831704Z"
+generated: "2026-02-22T02:42:44.058727689Z"
