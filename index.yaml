@@ -735,6 +735,16 @@ entries:
   vein-k8s:
   - apiVersion: v2
     appVersion: latest
+    created: "2026-09-26T23:35:23.556551576Z"
+    description: A basic chart for deploying the game Vein dedicated server
+    digest: d700a2ce80aa2c9a727e3358b89037cb946d1064a62ec3e1a3d17cebe6b930c6
+    name: vein-k8s
+    type: application
+    urls:
+    - vein-k8s-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: latest
     created: "2026-09-26T23:24:48.824672098Z"
     description: A basic chart for deploying the game Vein dedicated server
     digest: 2044e0846b01b2651ca00a8500bb8cbd5ffce6cc8b4a0f7dd0cd07dedcde2f64
@@ -763,4 +773,4 @@ entries:
     urls:
     - vein-k8s-0.0.1.tgz
     version: 0.0.1
-generated: "2026-09-26T23:24:48.824775673Z"
+generated: "2026-09-26T23:35:23.556686648Z"
